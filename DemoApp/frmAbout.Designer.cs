@@ -86,8 +86,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "frmAbout";
-            this.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(95)))), ((int)(((byte)(197)))));
+            this.Name = "frmAbout"; 
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ModernUI Demo Application";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

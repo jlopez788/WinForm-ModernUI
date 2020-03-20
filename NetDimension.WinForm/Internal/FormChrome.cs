@@ -182,17 +182,6 @@ namespace NetDimension.WinForm
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public event EventHandler WindowActiveChanged;
 
-		/// <summary>
-		/// 设置或获取活动状态窗口投影颜色
-		/// </summary>
-		[Category("UI Settings")]
-		[Description("")]
-		public Color ShadowColor
-		{
-			get => shadowColor;
-			set => shadowColor = shadowDecorator.ShadowColor = value;
-		}
-
 		[Category("UI Settings")]
 		public Color BorderColor
 		{
@@ -203,7 +192,8 @@ namespace NetDimension.WinForm
 			set
 			{
 				borderColor = value;
-
+				shadowColor = value;
+				shadowDecorator.ShadowColor = value;
 				InvalidateNonClient();
 			}
 		}
