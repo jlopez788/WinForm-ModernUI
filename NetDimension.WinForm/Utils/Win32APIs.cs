@@ -7,9 +7,6 @@ namespace NetDimension.WinForm
 	//你不需要知道这里面发生了什么。
 	//YOU DO NOT NEED HAVE TO KNOW WHAT IS HAPPEND HERE.
 
-
-
-
 	public class UxTheme
 	{
 		[DllImport("uxtheme.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
@@ -19,7 +16,6 @@ namespace NetDimension.WinForm
 	public class Shell32
 	{
 		public const int ABS_AUTOHIDE = 1;
-
 
 		[DllImport("SHELL32", CallingConvention = CallingConvention.StdCall)]
 		internal static extern int SHAppBarMessage(int dwMessage, ref APPBARDATA pData);
@@ -39,20 +35,20 @@ namespace NetDimension.WinForm
 
 	public class User32
 	{
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
+		internal static extern bool TrackMouseEvent(ref TRACKMOUSEEVENTS tme);
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        internal static extern bool TrackMouseEvent(ref TRACKMOUSEEVENTS tme);
-
-        [DllImport("User32.dll")]
+		[DllImport("User32.dll")]
 		internal static extern IntPtr GetParent(IntPtr hWnd);
 
 		[DllImport("User32.dll")]
 		internal static extern IntPtr GetTopWindow(IntPtr hWnd);
+
 		[DllImport("User32.dll")]
 		internal static extern IntPtr GetWindow(IntPtr hWnd, uint wCmd);
+
 		[DllImport("user32.dll")]
 		internal static extern IntPtr TrackPopupMenu(IntPtr menuHandle, int uFlags, int x, int y, int nReserved, IntPtr hwnd, IntPtr par);
-		
 
 		[DllImport("user32.dll", CharSet = CharSet.Auto)]
 		internal static extern void AdjustWindowRectEx(ref RECT rect, int dwStyle, bool hasMenu, int dwExSytle);
@@ -65,6 +61,7 @@ namespace NetDimension.WinForm
 
 		[DllImport("USER32.dll")]
 		public static extern bool IsZoomed(IntPtr hwnd);
+
 		public static float GetOriginalDeviceScaleFactor(IntPtr hWnd)
 		{
 			var hMonitor = MonitorFromWindow(hWnd, (uint)MonitorFromWindowFlags.MONITOR_DEFAULTTONEAREST);
@@ -81,8 +78,6 @@ namespace NetDimension.WinForm
 			{
 				return 1.0f;
 			}
-
-
 		}
 
 		public static int GetOriginalDeviceDpi(IntPtr hWnd)
@@ -101,10 +96,7 @@ namespace NetDimension.WinForm
 			{
 				return 96;
 			}
-
-
 		}
-
 
 		[DllImport("Shcore.dll")]
 		public static extern int GetDpiForMonitor(IntPtr hMonitor, MonitorDpiType dpiType, out int dpiX, out int dpiY);
@@ -121,19 +113,21 @@ namespace NetDimension.WinForm
 		[DllImport("user32.dll")]
 		public static extern int FillRect(IntPtr hDC, [In] ref RECT lprc, IntPtr hbr);
 
-
 		[DllImport("user32.dll")]
 		public static extern bool InflateRect(ref RECT lprc, int dx, int dy);
+
 		[DllImport("user32.dll")]
 		public static extern int GetSystemMetrics(SystemMetricFlags smIndex);
 
 		[DllImport("user32.dll")]
 		public static extern bool GetClientRect(IntPtr hWnd, ref RECT lpRect);
+
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetDCEx(IntPtr hwnd, IntPtr hrgnclip, int fdwOptions);
 
 		[DllImport("user32.dll")]
 		public static extern void DisableProcessWindowsGhosting();
+
 		[DllImport("user32.dll")]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool RedrawWindow(IntPtr hWnd, IntPtr lprcUpdate, IntPtr hrgnUpdate, uint flags);
@@ -142,7 +136,6 @@ namespace NetDimension.WinForm
 		{
 			RedrawWindow(hWnd, IntPtr.Zero, IntPtr.Zero, (int)(RedrawWindowFlags.RDW_FRAME | RedrawWindowFlags.RDW_UPDATENOW | RedrawWindowFlags.RDW_INVALIDATE | RedrawWindowFlags.RDW_ERASE));
 		}
-
 
 		public static void SendFrameChanged(IntPtr hWnd)
 		{
@@ -157,6 +150,7 @@ namespace NetDimension.WinForm
 
 		[DllImport("user32.dll")]
 		public extern static int OffsetRect(ref RECT lpRect, int x, int y);
+
 		[DllImport("user32.dll")]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool IsWindowVisible(IntPtr hWnd);
@@ -166,7 +160,6 @@ namespace NetDimension.WinForm
 
 		[DllImport("User32.dll", CharSet = CharSet.Auto)]
 		public static extern int SetWindowPos(IntPtr hWnd, IntPtr hWndAfter, int x, int y, int width, int height, SetWindowPosFlags flags);
-
 
 		[DllImport("User32.dll", CharSet = CharSet.Auto)]
 		public static extern int MoveWindow(IntPtr hWnd, int x, int y, int width, int height, bool repaint = false);
@@ -268,10 +261,13 @@ namespace NetDimension.WinForm
 
 		[DllImport("User32.dll", CharSet = CharSet.Auto)]
 		public static extern int ShowWindow(IntPtr hWnd, ShowWindowStyles cmdShow);
+
 		[DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
 		public static extern int GetClassName(IntPtr hWnd, System.Text.StringBuilder lpClassName, int nMaxCount);
+
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetActiveWindow();
+
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetForegroundWindow();
 
@@ -280,8 +276,10 @@ namespace NetDimension.WinForm
 
 		[DllImport("user32.dll")]
 		public static extern IntPtr SetCapture(IntPtr hWnd);
+
 		[DllImport("User32.dll")]
 		public static extern bool ReleaseCapture();
+
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport("user32.dll", SetLastError = true)]
 		internal static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
@@ -292,19 +290,17 @@ namespace NetDimension.WinForm
 		[DllImport("user32.dll")]
 		public static extern int TrackPopupMenu(IntPtr hMenu, uint uFlags, int x, int y, int nReserved, IntPtr hWnd, IntPtr prcRect);
 
+		public static uint LOWORD(IntPtr ptr)
+		{
+			return LoWord(ptr);
+		}
 
-        public static uint LOWORD(IntPtr ptr)
-        {
-            return LoWord(ptr);
-        }
+		public static uint HIWORD(IntPtr ptr)
+		{
+			return HiWord(ptr);
+		}
 
-        public static uint HIWORD(IntPtr ptr)
-        {
-            return HiWord(ptr);
-        }
-
-
-        public static uint HiWord(IntPtr ptr)
+		public static uint HiWord(IntPtr ptr)
 		{
 			if (((uint)ptr & 0x80000000) == 0x80000000)
 			{
@@ -323,16 +319,15 @@ namespace NetDimension.WinForm
 		{
 			return (uint)(ptr.ToInt32() & 0xFFFF);
 		}
-
-
 	}
 
 	public class Gdi32
 	{
-
 		public const int RGN_AND = 1, RGN_OR = 2, RGN_XOR = 3, RGN_DIFF = 4, RGN_COPY = 5;
+
 		[DllImport("USER32.dll")]
 		internal static extern int SetWindowRgn(IntPtr hWnd, IntPtr hRgn, bool redraw);
+
 		//[DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
 		//internal static extern int BitBlt(HandleRef hDC, int x, int y, int nWidth, int nHeight, HandleRef hSrcDC, int xSrc, int ySrc, int dwRop);
 		[DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
@@ -340,19 +335,25 @@ namespace NetDimension.WinForm
 
 		[DllImport("gdi32.dll")]
 		internal static extern bool LPtoDP(IntPtr hdc, [In, Out] POINT[] lpPoints, int nCount);
+
 		[DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
 		internal static extern bool GetViewportOrgEx(IntPtr hDC, ref POINT point);
+
 		[DllImport("GDI32.dll")]
 		internal static extern int ExtSelectClipRgn(IntPtr hdc, IntPtr hrgn, int mode);
 
 		[DllImport("GDI32.dll")]
 		internal static extern int RestoreDC(IntPtr hdc, int savedDC);
+
 		[DllImport("GDI32.dll")]
 		internal static extern int SaveDC(IntPtr hdc);
+
 		[DllImport("GDI32.dll")]
 		public static extern int GetClipRgn(IntPtr hdc, IntPtr hrgn);
+
 		[DllImport("GDI32.dll")]
 		public static extern int SelectClipRgn(IntPtr hdc, IntPtr hrgn);
+
 		[DllImport("gdi32.dll")]
 		public static extern IntPtr CreatePen(PenStyle fnPenStyle, int nWidth, uint crColor);
 
@@ -394,7 +395,5 @@ namespace NetDimension.WinForm
 
 		[DllImport("gdi32.dll", EntryPoint = "DeleteDC")]
 		public static extern bool DeleteDC([In] IntPtr hdc);
-
-
 	}
 }

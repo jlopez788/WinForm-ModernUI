@@ -28,7 +28,6 @@ namespace NetDimension.WinForm
 			return dwValue & 0xffff;
 		}
 
-
 		internal static int Hiword(int dwValue)
 		{
 			return (dwValue >> 16) & 0xffff;
@@ -74,32 +73,26 @@ namespace NetDimension.WinForm
 			else if (x < CornerAreaSize & y + CornerAreaSize > height - CornerAreaSize)
 			{
 				mode = HitTest.HTBOTTOMLEFT;
-
 			}
 			else if (x + CornerAreaSize > width - CornerAreaSize & y + CornerAreaSize > height - CornerAreaSize)
 			{
 				mode = HitTest.HTBOTTOMRIGHT;
-
 			}
 			else if (x + CornerAreaSize > width - CornerAreaSize & y < CornerAreaSize)
 			{
 				mode = HitTest.HTTOPRIGHT;
-
 			}
 			else if (x < CornerAreaSize)
 			{
 				mode = HitTest.HTLEFT;
-
 			}
 			else if (x + CornerAreaSize > width - CornerAreaSize)
 			{
 				mode = HitTest.HTRIGHT;
-
 			}
 			else if (y < CornerAreaSize)
 			{
 				mode = HitTest.HTTOP;
-
 			}
 			else if (y + CornerAreaSize > height - CornerAreaSize)
 			{
@@ -108,76 +101,80 @@ namespace NetDimension.WinForm
 
 			return mode;
 		}
-
 	}
 
-    public enum IDC_STANDARD_CURSORS
-    {
-        IDC_ARROW = 32512,
-        IDC_IBEAM = 32513,
-        IDC_WAIT = 32514,
-        IDC_CROSS = 32515,
-        IDC_UPARROW = 32516,
-        IDC_SIZE = 32640,
-        IDC_ICON = 32641,
-        IDC_SIZENWSE = 32642,
-        IDC_SIZENESW = 32643,
-        IDC_SIZEWE = 32644,
-        IDC_SIZENS = 32645,
-        IDC_SIZEALL = 32646,
-        IDC_NO = 32648,
-        IDC_HAND = 32649,
-        IDC_APPSTARTING = 32650,
-        IDC_HELP = 32651
-    }
+	public enum IDC_STANDARD_CURSORS
+	{
+		IDC_ARROW = 32512,
+		IDC_IBEAM = 32513,
+		IDC_WAIT = 32514,
+		IDC_CROSS = 32515,
+		IDC_UPARROW = 32516,
+		IDC_SIZE = 32640,
+		IDC_ICON = 32641,
+		IDC_SIZENWSE = 32642,
+		IDC_SIZENESW = 32643,
+		IDC_SIZEWE = 32644,
+		IDC_SIZENS = 32645,
+		IDC_SIZEALL = 32646,
+		IDC_NO = 32648,
+		IDC_HAND = 32649,
+		IDC_APPSTARTING = 32650,
+		IDC_HELP = 32651
+	}
 
-    /// <summary>
-    /// The services requested. This member can be a combination of the following values.
-    /// </summary>
-    /// <seealso cref="http://msdn.microsoft.com/en-us/library/ms645604%28v=vs.85%29.aspx"/>
-    [Flags]
-    public enum TMEFlags : uint
-    {
-        /// <summary>
-        /// The caller wants to cancel a prior tracking request. The caller should also specify the type of tracking that it wants to cancel. For example, to cancel hover tracking, the caller must pass the TME_CANCEL and TME_HOVER flags.
-        /// </summary>
-        TME_CANCEL = 0x80000000,
-        /// <summary>
-        /// The caller wants hover notification. Notification is delivered as a WM_MOUSEHOVER message.
-        /// If the caller requests hover tracking while hover tracking is already active, the hover timer will be reset.
-        /// This flag is ignored if the mouse pointer is not over the specified window or area.
-        /// </summary>
-        TME_HOVER = 0x00000001,
-        /// <summary>
-        /// The caller wants leave notification. Notification is delivered as a WM_MOUSELEAVE message. If the mouse is not over the specified window or area, a leave notification is generated immediately and no further tracking is performed.
-        /// </summary>
-        TME_LEAVE = 0x00000002,
-        /// <summary>
-        /// The caller wants hover and leave notification for the nonclient areas. Notification is delivered as WM_NCMOUSEHOVER and WM_NCMOUSELEAVE messages.
-        /// </summary>
-        TME_NONCLIENT = 0x00000010,
-        /// <summary>
-        /// The function fills in the structure instead of treating it as a tracking request. The structure is filled such that had that structure been passed to TrackMouseEvent, it would generate the current tracking. The only anomaly is that the hover time-out returned is always the actual time-out and not HOVER_DEFAULT, if HOVER_DEFAULT was specified during the original TrackMouseEvent request.
-        /// </summary>
-        TME_QUERY = 0x40000000,
-    }
+	/// <summary>
+	/// The services requested. This member can be a combination of the following values.
+	/// </summary>
+	/// <seealso cref="http://msdn.microsoft.com/en-us/library/ms645604%28v=vs.85%29.aspx"/>
+	[Flags]
+	public enum TMEFlags : uint
+	{
+		/// <summary>
+		/// The caller wants to cancel a prior tracking request. The caller should also specify the type of tracking that it wants to cancel. For example, to cancel hover tracking, the caller must pass the TME_CANCEL and TME_HOVER flags.
+		/// </summary>
+		TME_CANCEL = 0x80000000,
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct TRACKMOUSEEVENTS
-    {
-        public uint cbSize;
-        public uint dwFlags;
-        public IntPtr hWnd;
-        public uint dwHoverTime;
-    }
+		/// <summary>
+		/// The caller wants hover notification. Notification is delivered as a WM_MOUSEHOVER message.
+		/// If the caller requests hover tracking while hover tracking is already active, the hover timer will be reset.
+		/// This flag is ignored if the mouse pointer is not over the specified window or area.
+		/// </summary>
+		TME_HOVER = 0x00000001,
 
-    public struct MARGINS                           // struct for box shadow
+		/// <summary>
+		/// The caller wants leave notification. Notification is delivered as a WM_MOUSELEAVE message. If the mouse is not over the specified window or area, a leave notification is generated immediately and no further tracking is performed.
+		/// </summary>
+		TME_LEAVE = 0x00000002,
+
+		/// <summary>
+		/// The caller wants hover and leave notification for the nonclient areas. Notification is delivered as WM_NCMOUSEHOVER and WM_NCMOUSELEAVE messages.
+		/// </summary>
+		TME_NONCLIENT = 0x00000010,
+
+		/// <summary>
+		/// The function fills in the structure instead of treating it as a tracking request. The structure is filled such that had that structure been passed to TrackMouseEvent, it would generate the current tracking. The only anomaly is that the hover time-out returned is always the actual time-out and not HOVER_DEFAULT, if HOVER_DEFAULT was specified during the original TrackMouseEvent request.
+		/// </summary>
+		TME_QUERY = 0x40000000,
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public struct TRACKMOUSEEVENTS
+	{
+		public uint cbSize;
+		public uint dwFlags;
+		public IntPtr hWnd;
+		public uint dwHoverTime;
+	}
+
+	public struct MARGINS                           // struct for box shadow
 	{
 		public int leftWidth;
 		public int rightWidth;
 		public int topHeight;
 		public int bottomHeight;
 	}
+
 	internal enum ABMsg : int
 	{
 		ABM_NEW = 0,
@@ -193,7 +190,8 @@ namespace NetDimension.WinForm
 		ABM_SETSTATE
 	}
 
-	public enum WindowActiveFlags:uint {
+	public enum WindowActiveFlags : uint
+	{
 		WA_INACTIVE = 0,
 		WA_ACTIVE = 1,
 		WA_CLICKACTIVE = 2
@@ -227,9 +225,11 @@ namespace NetDimension.WinForm
 		PS_DASHDOTDOT = 4, //The pen has alternating dashes and double dots.
 		PS_NULL = 5, //The pen is invisible.
 		PS_INSIDEFRAME = 6,// Normally when the edge is drawn, it’s centred on the outer edge meaning that half the width of the pen is drawn
-						   // outside the shape’s edge, half is inside the shape’s edge. When PS_INSIDEFRAME is specified the edge is drawn 
+
+						   // outside the shape’s edge, half is inside the shape’s edge. When PS_INSIDEFRAME is specified the edge is drawn
 						   //completely inside the outer edge of the shape.
 		PS_USERSTYLE = 7,
+
 		PS_ALTERNATE = 8,
 		PS_STYLE_MASK = 0x0000000F,
 
@@ -255,7 +255,6 @@ namespace NetDimension.WinForm
 		MONITOR_DEFAULTTONEAREST = 0x2,
 		MONITOR_DEFAULTTOPRIMARY = 0x1
 	}
-
 
 	internal struct SystemCommandFlags
 	{
@@ -309,7 +308,7 @@ namespace NetDimension.WinForm
 		SM_ARRANGE = 56,
 
 		/// <summary>
-		/// The value that specifies how the system is started: 
+		/// The value that specifies how the system is started:
 		/// 0 Normal boot
 		/// 1 Fail-safe boot
 		/// 2 Fail-safe with network boot
@@ -351,8 +350,8 @@ namespace NetDimension.WinForm
 		SM_CXDOUBLECLK = 36,
 
 		/// <summary>
-		/// The number of pixels on either side of a mouse-down point that the mouse pointer can move before a drag operation begins. 
-		/// This allows the user to click and release the mouse button easily without unintentionally starting a drag operation. 
+		/// The number of pixels on either side of a mouse-down point that the mouse pointer can move before a drag operation begins.
+		/// This allows the user to click and release the mouse button easily without unintentionally starting a drag operation.
 		/// If this value is negative, it is subtracted from the left of the mouse-down point and added to the right of it.
 		/// </summary>
 		SM_CXDRAG = 68,
@@ -370,8 +369,8 @@ namespace NetDimension.WinForm
 		SM_CXFIXEDFRAME = 7,
 
 		/// <summary>
-		/// The width of the left and right edges of the focus rectangle that the DrawFocusRectdraws. 
-		/// This value is in pixels. 
+		/// The width of the left and right edges of the focus rectangle that the DrawFocusRectdraws.
+		/// This value is in pixels.
 		/// Windows 2000:  This value is not supported.
 		/// </summary>
 		SM_CXFOCUSBORDER = 83,
@@ -382,8 +381,8 @@ namespace NetDimension.WinForm
 		SM_CXFRAME = 32,
 
 		/// <summary>
-		/// The width of the client area for a full-screen window on the primary display monitor, in pixels. 
-		/// To get the coordinates of the portion of the screen that is not obscured by the system taskbar or by application desktop toolbars, 
+		/// The width of the client area for a full-screen window on the primary display monitor, in pixels.
+		/// To get the coordinates of the portion of the screen that is not obscured by the system taskbar or by application desktop toolbars,
 		/// call the SystemParametersInfofunction with the SPI_GETWORKAREA value.
 		/// </summary>
 		SM_CXFULLSCREEN = 16,
@@ -399,13 +398,13 @@ namespace NetDimension.WinForm
 		SM_CXHTHUMB = 10,
 
 		/// <summary>
-		/// The default width of an icon, in pixels. The LoadIcon function can load only icons with the dimensions 
+		/// The default width of an icon, in pixels. The LoadIcon function can load only icons with the dimensions
 		/// that SM_CXICON and SM_CYICON specifies.
 		/// </summary>
 		SM_CXICON = 11,
 
 		/// <summary>
-		/// The width of a grid cell for items in large icon view, in pixels. Each item fits into a rectangle of size 
+		/// The width of a grid cell for items in large icon view, in pixels. Each item fits into a rectangle of size
 		/// SM_CXICONSPACING by SM_CYICONSPACING when arranged. This value is always greater than or equal to SM_CXICON.
 		/// </summary>
 		SM_CXICONSPACING = 38,
@@ -416,8 +415,8 @@ namespace NetDimension.WinForm
 		SM_CXMAXIMIZED = 61,
 
 		/// <summary>
-		/// The default maximum width of a window that has a caption and sizing borders, in pixels. 
-		/// This metric refers to the entire desktop. The user cannot drag the window frame to a size larger than these dimensions. 
+		/// The default maximum width of a window that has a caption and sizing borders, in pixels.
+		/// This metric refers to the entire desktop. The user cannot drag the window frame to a size larger than these dimensions.
 		/// A window can override this value by processing the WM_GETMINMAXINFO message.
 		/// </summary>
 		SM_CXMAXTRACK = 59,
@@ -443,13 +442,13 @@ namespace NetDimension.WinForm
 		SM_CXMINIMIZED = 57,
 
 		/// <summary>
-		/// The width of a grid cell for a minimized window, in pixels. Each minimized window fits into a rectangle this size when arranged. 
+		/// The width of a grid cell for a minimized window, in pixels. Each minimized window fits into a rectangle this size when arranged.
 		/// This value is always greater than or equal to SM_CXMINIMIZED.
 		/// </summary>
 		SM_CXMINSPACING = 47,
 
 		/// <summary>
-		/// The minimum tracking width of a window, in pixels. The user cannot drag the window frame to a size smaller than these dimensions. 
+		/// The minimum tracking width of a window, in pixels. The user cannot drag the window frame to a size smaller than these dimensions.
 		/// A window can override this value by processing the WM_GETMINMAXINFO message.
 		/// </summary>
 		SM_CXMINTRACK = 34,
@@ -460,7 +459,7 @@ namespace NetDimension.WinForm
 		SM_CXPADDEDBORDER = 92,
 
 		/// <summary>
-		/// The width of the screen of the primary display monitor, in pixels. This is the same value obtained by calling 
+		/// The width of the screen of the primary display monitor, in pixels. This is the same value obtained by calling
 		/// GetDeviceCaps as follows: GetDeviceCaps( hdcPrimaryMonitor, HORZRES).
 		/// </summary>
 		SM_CXSCREEN = 0,
@@ -471,8 +470,8 @@ namespace NetDimension.WinForm
 		SM_CXSIZE = 30,
 
 		/// <summary>
-		/// The thickness of the sizing border around the perimeter of a window that can be resized, in pixels. 
-		/// SM_CXSIZEFRAME is the width of the horizontal border, and SM_CYSIZEFRAME is the height of the vertical border. 
+		/// The thickness of the sizing border around the perimeter of a window that can be resized, in pixels.
+		/// SM_CXSIZEFRAME is the width of the horizontal border, and SM_CYSIZEFRAME is the height of the vertical border.
 		/// This value is the same as SM_CXFRAME.
 		/// </summary>
 		SM_CXSIZEFRAME = 32,
@@ -488,7 +487,7 @@ namespace NetDimension.WinForm
 		SM_CXSMSIZE = 52,
 
 		/// <summary>
-		/// The width of the virtual screen, in pixels. The virtual screen is the bounding rectangle of all display monitors. 
+		/// The width of the virtual screen, in pixels. The virtual screen is the bounding rectangle of all display monitors.
 		/// The SM_XVIRTUALSCREEN metric is the coordinates for the left side of the virtual screen.
 		/// </summary>
 		SM_CXVIRTUALSCREEN = 78,
@@ -519,16 +518,16 @@ namespace NetDimension.WinForm
 		SM_CYDLGFRAME = 8,
 
 		/// <summary>
-		/// The height of the rectangle around the location of a first click in a double-click sequence, in pixels. 
-		/// The second click must occur within the rectangle defined by SM_CXDOUBLECLK and SM_CYDOUBLECLK for the system to consider 
-		/// the two clicks a double-click. The two clicks must also occur within a specified time. To set the height of the double-click 
+		/// The height of the rectangle around the location of a first click in a double-click sequence, in pixels.
+		/// The second click must occur within the rectangle defined by SM_CXDOUBLECLK and SM_CYDOUBLECLK for the system to consider
+		/// the two clicks a double-click. The two clicks must also occur within a specified time. To set the height of the double-click
 		/// rectangle, call SystemParametersInfo with SPI_SETDOUBLECLKHEIGHT.
 		/// </summary>
 		SM_CYDOUBLECLK = 37,
 
 		/// <summary>
-		/// The number of pixels above and below a mouse-down point that the mouse pointer can move before a drag operation begins. 
-		/// This allows the user to click and release the mouse button easily without unintentionally starting a drag operation. 
+		/// The number of pixels above and below a mouse-down point that the mouse pointer can move before a drag operation begins.
+		/// This allows the user to click and release the mouse button easily without unintentionally starting a drag operation.
 		/// If this value is negative, it is subtracted from above the mouse-down point and added below it.
 		/// </summary>
 		SM_CYDRAG = 69,
@@ -539,15 +538,15 @@ namespace NetDimension.WinForm
 		SM_CYEDGE = 46,
 
 		/// <summary>
-		/// The thickness of the frame around the perimeter of a window that has a caption but is not sizable, in pixels. 
-		/// SM_CXFIXEDFRAME is the height of the horizontal border, and SM_CYFIXEDFRAME is the width of the vertical border. 
+		/// The thickness of the frame around the perimeter of a window that has a caption but is not sizable, in pixels.
+		/// SM_CXFIXEDFRAME is the height of the horizontal border, and SM_CYFIXEDFRAME is the width of the vertical border.
 		/// This value is the same as SM_CYDLGFRAME.
 		/// </summary>
 		SM_CYFIXEDFRAME = 8,
 
 		/// <summary>
-		/// The height of the top and bottom edges of the focus rectangle drawn byDrawFocusRect. 
-		/// This value is in pixels. 
+		/// The height of the top and bottom edges of the focus rectangle drawn byDrawFocusRect.
+		/// This value is in pixels.
 		/// Windows 2000:  This value is not supported.
 		/// </summary>
 		SM_CYFOCUSBORDER = 84,
@@ -558,7 +557,7 @@ namespace NetDimension.WinForm
 		SM_CYFRAME = 33,
 
 		/// <summary>
-		/// The height of the client area for a full-screen window on the primary display monitor, in pixels. 
+		/// The height of the client area for a full-screen window on the primary display monitor, in pixels.
 		/// To get the coordinates of the portion of the screen not obscured by the system taskbar or by application desktop toolbars,
 		/// call the SystemParametersInfo function with the SPI_GETWORKAREA value.
 		/// </summary>
@@ -575,7 +574,7 @@ namespace NetDimension.WinForm
 		SM_CYICON = 12,
 
 		/// <summary>
-		/// The height of a grid cell for items in large icon view, in pixels. Each item fits into a rectangle of size 
+		/// The height of a grid cell for items in large icon view, in pixels. Each item fits into a rectangle of size
 		/// SM_CXICONSPACING by SM_CYICONSPACING when arranged. This value is always greater than or equal to SM_CYICON.
 		/// </summary>
 		SM_CYICONSPACING = 39,
@@ -591,8 +590,8 @@ namespace NetDimension.WinForm
 		SM_CYMAXIMIZED = 62,
 
 		/// <summary>
-		/// The default maximum height of a window that has a caption and sizing borders, in pixels. This metric refers to the entire desktop. 
-		/// The user cannot drag the window frame to a size larger than these dimensions. A window can override this value by processing 
+		/// The default maximum height of a window that has a caption and sizing borders, in pixels. This metric refers to the entire desktop.
+		/// The user cannot drag the window frame to a size larger than these dimensions. A window can override this value by processing
 		/// the WM_GETMINMAXINFO message.
 		/// </summary>
 		SM_CYMAXTRACK = 60,
@@ -623,19 +622,19 @@ namespace NetDimension.WinForm
 		SM_CYMINIMIZED = 58,
 
 		/// <summary>
-		/// The height of a grid cell for a minimized window, in pixels. Each minimized window fits into a rectangle this size when arranged. 
+		/// The height of a grid cell for a minimized window, in pixels. Each minimized window fits into a rectangle this size when arranged.
 		/// This value is always greater than or equal to SM_CYMINIMIZED.
 		/// </summary>
 		SM_CYMINSPACING = 48,
 
 		/// <summary>
-		/// The minimum tracking height of a window, in pixels. The user cannot drag the window frame to a size smaller than these dimensions. 
+		/// The minimum tracking height of a window, in pixels. The user cannot drag the window frame to a size smaller than these dimensions.
 		/// A window can override this value by processing the WM_GETMINMAXINFO message.
 		/// </summary>
 		SM_CYMINTRACK = 35,
 
 		/// <summary>
-		/// The height of the screen of the primary display monitor, in pixels. This is the same value obtained by calling 
+		/// The height of the screen of the primary display monitor, in pixels. This is the same value obtained by calling
 		/// GetDeviceCaps as follows: GetDeviceCaps( hdcPrimaryMonitor, VERTRES).
 		/// </summary>
 		SM_CYSCREEN = 1,
@@ -646,8 +645,8 @@ namespace NetDimension.WinForm
 		SM_CYSIZE = 31,
 
 		/// <summary>
-		/// The thickness of the sizing border around the perimeter of a window that can be resized, in pixels. 
-		/// SM_CXSIZEFRAME is the width of the horizontal border, and SM_CYSIZEFRAME is the height of the vertical border. 
+		/// The thickness of the sizing border around the perimeter of a window that can be resized, in pixels.
+		/// SM_CXSIZEFRAME is the width of the horizontal border, and SM_CYSIZEFRAME is the height of the vertical border.
 		/// This value is the same as SM_CYFRAME.
 		/// </summary>
 		SM_CYSIZEFRAME = 33,
@@ -668,7 +667,7 @@ namespace NetDimension.WinForm
 		SM_CYSMSIZE = 53,
 
 		/// <summary>
-		/// The height of the virtual screen, in pixels. The virtual screen is the bounding rectangle of all display monitors. 
+		/// The height of the virtual screen, in pixels. The virtual screen is the bounding rectangle of all display monitors.
 		/// The SM_YVIRTUALSCREEN metric is the coordinates for the top of the virtual screen.
 		/// </summary>
 		SM_CYVIRTUALSCREEN = 79,
@@ -694,16 +693,16 @@ namespace NetDimension.WinForm
 		SM_DEBUG = 22,
 
 		/// <summary>
-		/// Nonzero if the current operating system is Windows 7 or Windows Server 2008 R2 and the Tablet PC Input 
-		/// service is started; otherwise, 0. The return value is a bitmask that specifies the type of digitizer input supported by the device. 
-		/// For more information, see Remarks. 
+		/// Nonzero if the current operating system is Windows 7 or Windows Server 2008 R2 and the Tablet PC Input
+		/// service is started; otherwise, 0. The return value is a bitmask that specifies the type of digitizer input supported by the device.
+		/// For more information, see Remarks.
 		/// Windows Server 2008, Windows Vista, and Windows XP/2000:  This value is not supported.
 		/// </summary>
 		SM_DIGITIZER = 94,
 
 		/// <summary>
-		/// Nonzero if Input Method Manager/Input Method Editor features are enabled; otherwise, 0. 
-		/// SM_IMMENABLED indicates whether the system is ready to use a Unicode-based IME on a Unicode application. 
+		/// Nonzero if Input Method Manager/Input Method Editor features are enabled; otherwise, 0.
+		/// SM_IMMENABLED indicates whether the system is ready to use a Unicode-based IME on a Unicode application.
 		/// To ensure that a language-dependent IME works, check SM_DBCSENABLED and the system ANSI code page.
 		/// Otherwise the ANSI-to-Unicode conversion may not be performed correctly, or some components like fonts
 		/// or registry settings may not be present.
@@ -711,9 +710,9 @@ namespace NetDimension.WinForm
 		SM_IMMENABLED = 82,
 
 		/// <summary>
-		/// Nonzero if there are digitizers in the system; otherwise, 0. SM_MAXIMUMTOUCHES returns the aggregate maximum of the 
-		/// maximum number of contacts supported by every digitizer in the system. If the system has only single-touch digitizers, 
-		/// the return value is 1. If the system has multi-touch digitizers, the return value is the number of simultaneous contacts 
+		/// Nonzero if there are digitizers in the system; otherwise, 0. SM_MAXIMUMTOUCHES returns the aggregate maximum of the
+		/// maximum number of contacts supported by every digitizer in the system. If the system has only single-touch digitizers,
+		/// the return value is 1. If the system has multi-touch digitizers, the return value is the number of simultaneous contacts
 		/// the hardware can provide. Windows Server 2008, Windows Vista, and Windows XP/2000:  This value is not supported.
 		/// </summary>
 		SM_MAXIMUMTOUCHES = 95,
@@ -734,7 +733,7 @@ namespace NetDimension.WinForm
 		SM_MIDEASTENABLED = 74,
 
 		/// <summary>
-		/// Nonzero if a mouse is installed; otherwise, 0. This value is rarely zero, because of support for virtual mice and because 
+		/// Nonzero if a mouse is installed; otherwise, 0. This value is rarely zero, because of support for virtual mice and because
 		/// some systems detect the presence of the port instead of the presence of a mouse.
 		/// </summary>
 		SM_MOUSEPRESENT = 19,
@@ -760,26 +759,26 @@ namespace NetDimension.WinForm
 		SM_PENWINDOWS = 41,
 
 		/// <summary>
-		/// This system metric is used in a Terminal Services environment to determine if the current Terminal Server session is 
-		/// being remotely controlled. Its value is nonzero if the current session is remotely controlled; otherwise, 0. 
-		/// You can use terminal services management tools such as Terminal Services Manager (tsadmin.msc) and shadow.exe to 
-		/// control a remote session. When a session is being remotely controlled, another user can view the contents of that session 
+		/// This system metric is used in a Terminal Services environment to determine if the current Terminal Server session is
+		/// being remotely controlled. Its value is nonzero if the current session is remotely controlled; otherwise, 0.
+		/// You can use terminal services management tools such as Terminal Services Manager (tsadmin.msc) and shadow.exe to
+		/// control a remote session. When a session is being remotely controlled, another user can view the contents of that session
 		/// and potentially interact with it.
 		/// </summary>
 		SM_REMOTECONTROL = 0x2001,
 
 		/// <summary>
-		/// This system metric is used in a Terminal Services environment. If the calling process is associated with a Terminal Services 
-		/// client session, the return value is nonzero. If the calling process is associated with the Terminal Services console session, 
-		/// the return value is 0. 
-		/// Windows Server 2003 and Windows XP:  The console session is not necessarily the physical console. 
+		/// This system metric is used in a Terminal Services environment. If the calling process is associated with a Terminal Services
+		/// client session, the return value is nonzero. If the calling process is associated with the Terminal Services console session,
+		/// the return value is 0.
+		/// Windows Server 2003 and Windows XP:  The console session is not necessarily the physical console.
 		/// For more information, seeWTSGetActiveConsoleSessionId.
 		/// </summary>
 		SM_REMOTESESSION = 0x1000,
 
 		/// <summary>
-		/// Nonzero if all the display monitors have the same color format, otherwise, 0. Two displays can have the same bit depth, 
-		/// but different color formats. For example, the red, green, and blue pixels can be encoded with different numbers of bits, 
+		/// Nonzero if all the display monitors have the same color format, otherwise, 0. Two displays can have the same bit depth,
+		/// but different color formats. For example, the red, green, and blue pixels can be encoded with different numbers of bits,
 		/// or those bits can be located in different places in a pixel color value.
 		/// </summary>
 		SM_SAMEDISPLAYFORMAT = 81,
@@ -795,7 +794,7 @@ namespace NetDimension.WinForm
 		SM_SERVERR2 = 89,
 
 		/// <summary>
-		/// Nonzero if the user requires an application to present information visually in situations where it would otherwise present 
+		/// Nonzero if the user requires an application to present information visually in situations where it would otherwise present
 		/// the information only in audible form; otherwise, 0.
 		/// </summary>
 		SM_SHOWSOUNDS = 70,
@@ -822,24 +821,23 @@ namespace NetDimension.WinForm
 
 		/// <summary>
 		/// Nonzero if the current operating system is the Windows XP Tablet PC edition or if the current operating system is Windows Vista
-		/// or Windows 7 and the Tablet PC Input service is started; otherwise, 0. The SM_DIGITIZER setting indicates the type of digitizer 
+		/// or Windows 7 and the Tablet PC Input service is started; otherwise, 0. The SM_DIGITIZER setting indicates the type of digitizer
 		/// input supported by a device running Windows 7 or Windows Server 2008 R2. For more information, see Remarks.
 		/// </summary>
 		SM_TABLETPC = 86,
 
 		/// <summary>
-		/// The coordinates for the left side of the virtual screen. The virtual screen is the bounding rectangle of all display monitors. 
+		/// The coordinates for the left side of the virtual screen. The virtual screen is the bounding rectangle of all display monitors.
 		/// The SM_CXVIRTUALSCREEN metric is the width of the virtual screen.
 		/// </summary>
 		SM_XVIRTUALSCREEN = 76,
 
 		/// <summary>
-		/// The coordinates for the top of the virtual screen. The virtual screen is the bounding rectangle of all display monitors. 
+		/// The coordinates for the top of the virtual screen. The virtual screen is the bounding rectangle of all display monitors.
 		/// The SM_CYVIRTUALSCREEN metric is the height of the virtual screen.
 		/// </summary>
 		SM_YVIRTUALSCREEN = 77,
 	}
-
 
 	[StructLayout(LayoutKind.Sequential)]
 	public struct COLORREF
@@ -862,18 +860,19 @@ namespace NetDimension.WinForm
 			ColorDWORD = (uint)color.R + (((uint)color.G) << 8) + (((uint)color.B) << 16);
 		}
 	}
+
 	[Flags()]
 	internal enum DCX
 	{
 		CACHE = 0x2,
 		CLIPCHILDREN = 0x8,
-        CLIPSIBLINGS = 0x10,
+		CLIPSIBLINGS = 0x10,
 		EXCLUDERGN = 0x40,
 		EXCLUDEUPDATE = 0x100,
 		INTERSECTRGN = 0x80,
 		INTERSECTUPDATE = 0x200,
 		LOCKWINDOWUPDATE = 0x400,
-        NORECOMPUTE = 0x100000,
+		NORECOMPUTE = 0x100000,
 		NORESETATTRS = 0x4,
 		PARENTCLIP = 0x20,
 		VALIDATE = 0x200000,
@@ -895,8 +894,8 @@ namespace NetDimension.WinForm
 		RDW_ERASENOW = 0x0200,
 		RDW_FRAME = 0x0400,
 		RDW_NOFRAME = 0x0800,
-
 	}
+
 	public enum SetWindowPosFlags
 	{
 		SWP_NOSIZE = 0x0001,
@@ -954,6 +953,7 @@ namespace NetDimension.WinForm
 		public int y;
 
 		#region Constructors
+
 		public POINT(int x, int y)
 		{
 			this.x = x;
@@ -970,7 +970,8 @@ namespace NetDimension.WinForm
 		{
 			return $"x:{x} y:{y}";
 		}
-		#endregion
+
+		#endregion Constructors
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -985,11 +986,13 @@ namespace NetDimension.WinForm
 		public uint flags;
 
 		#region Overrides
+
 		public override string ToString()
 		{
 			return x + ":" + y + ":" + cx + ":" + cy + ":" + ((SetWindowPosFlags)flags);
 		}
-		#endregion
+
+		#endregion Overrides
 	}
 
 	[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
@@ -1003,8 +1006,10 @@ namespace NetDimension.WinForm
 		public IntPtr hIcon;
 		public IntPtr hCursor;
 		public IntPtr hbrBackground;
+
 		[MarshalAs(UnmanagedType.LPWStr)]
 		public string lpszMenuName;
+
 		[MarshalAs(UnmanagedType.LPWStr)]
 		public string lpszClassName;
 	}
@@ -1021,10 +1026,12 @@ namespace NetDimension.WinForm
 		/// Specified WS_EX_NOPARENTNOTIFY enumeration value.
 		/// </summary>
 		WS_EX_NOPARENTNOTIFY = 0x00000004,
+
 		/// <summary>
 		/// Specified WS_EX_NOACTIVATE enumeration value.
 		/// </summary>
 		WS_EX_NOACTIVATE = 0x08000000,
+
 		/// <summary>
 		/// Specified WS_EX_TOPMOST enumeration value.
 		/// </summary>
@@ -1196,7 +1203,6 @@ namespace NetDimension.WinForm
 		GWL_ID = -12
 	}
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public struct RECT
 	{
@@ -1231,16 +1237,19 @@ namespace NetDimension.WinForm
 			get => right;
 			set => right = value;
 		}
+
 		public int Top
 		{
 			get => top;
 			set => top = value;
 		}
+
 		public int Bottom
 		{
 			get => bottom;
 			set => bottom = value;
 		}
+
 		public RECT(int left, int top, int width, int height)
 		{
 			this.left = left;
@@ -1251,13 +1260,17 @@ namespace NetDimension.WinForm
 
 		public RECT(Rectangle r)
 		{
-			left = r.Left; top = r.Top; right = r.Right; bottom = r.Bottom;
+			left = r.Left;
+			top = r.Top;
+			right = r.Right;
+			bottom = r.Bottom;
 		}
 
 		public Rectangle ToRectangle()
 		{
 			return Rectangle.FromLTRB(Left, Top, Right, Bottom);
 		}
+
 		public void Inflate(int width, int height)
 		{
 			Left -= width;
@@ -1294,7 +1307,8 @@ namespace NetDimension.WinForm
 			get { return Math.Abs(bottom - top); }
 			set { bottom = top + (int)value; }
 		}
-		#endregion
+
+		#endregion Properties
 
 		#region Overrides
 
@@ -1303,7 +1317,7 @@ namespace NetDimension.WinForm
 			return string.Format("x:{0},y:{1},width:{2},height:{3}", Left, Top, Right - Left, Bottom - Top);
 		}
 
-		#endregion
+		#endregion Overrides
 
 		public static explicit operator Rectangle(RECT rect)
 		{
@@ -1514,14 +1528,17 @@ namespace NetDimension.WinForm
 		/// Contains the new coordinates of a window that has been moved or resized, that is, it is the proposed new window coordinates.
 		/// </summary>
 		public RECT rectProposed;
+
 		/// <summary>
 		/// Contains the coordinates of the window before it was moved or resized.
 		/// </summary>
 		public RECT rectBeforeMove;
+
 		/// <summary>
 		/// Contains the coordinates of the window's client area before the window was moved or resized.
 		/// </summary>
 		public RECT rectClientBeforeMove;
+
 		/// <summary>
 		/// Pointer to a WINDOWPOS structure that contains the size and position values specified in the operation that moved or resized the window.
 		/// </summary>
@@ -1536,5 +1553,4 @@ namespace NetDimension.WinForm
 		SIZE_MAXSHOW = 3,
 		SIZE_MAXHIDE = 4
 	}
-
 }

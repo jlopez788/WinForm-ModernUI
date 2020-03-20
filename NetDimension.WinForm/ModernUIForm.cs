@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NetDimension.WinForm
+﻿namespace NetDimension.WinForm
 {
-    public class ModernUIForm : FormChrome
-    {
-    }
+	public class ModernUIForm : FormChrome
+	{
+	}
 }
