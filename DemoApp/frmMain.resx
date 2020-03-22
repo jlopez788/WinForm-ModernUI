@@ -121,6 +121,9 @@
     <value>This is a ModernUI-like form skin. It's used by my anothor project named NanUI which can design User-Interface of  a WinForm Application by using HTML/CSS3/Javascript.
 
 The shadow effect of this window is DropShadow.
-Click button below to see another shadow effect.</value>
+Click button below to see another shadow effect.
+
+Color:  85, 50, 138
+</value>
   </data>
 </root>

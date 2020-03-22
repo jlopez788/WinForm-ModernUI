@@ -1,6 +1,6 @@
 ﻿namespace NetDimension.WinForm
 {
-	public class ModernUIForm : FormChrome
-	{
-	}
+    public class ModernUIForm : FormChrome
+    {
+    }
 }
